@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 # Disable compiler checking
-# Otherwise it will fall with `reference to _exit() not found` error
+# Otherwise it will fall with `reference to _exit() not found` error 
 set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
 
@@ -46,11 +46,14 @@ add_definitions(-DSTM32F10X_MD)
 
 include_directories(cmsis)
 include_directories(stm32)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 set(SOURCE_FILES
-    stm32/startup/startup_stm32f10x_md.c # Choose startup file for your MCU
+    stm32/startup/startup_stm32f10x_md.c
     stm32/system_stm32f10x.c
     syscalls/syscalls.c
+    spi1.c
+    ssd1306.c
     main.c)
 
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/.gdbinit DESTINATION ${EXECUTABLE_OUTPUT_PATH})
